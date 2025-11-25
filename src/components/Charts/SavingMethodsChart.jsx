@@ -48,7 +48,7 @@ const SavingMethodsChart = ({ data, totalRespondents }) => {
   };
 
   return (
-    <ChartCard title="4. Saving Methods">
+    <ChartCard>
       <Bar data={chartData} options={options} />
     </ChartCard>
   );

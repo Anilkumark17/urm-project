@@ -16,7 +16,7 @@ const RevisitChart = ({ data }) => {
         label: 'Count',
         data: sortedEntries.map(e => e[1]),
         backgroundColor: '#14b8a6', // Teal 500
-        borderRadius: 6,
+        
       },
     ],
   };
@@ -47,7 +47,7 @@ const RevisitChart = ({ data }) => {
   };
 
   return (
-    <ChartCard title="6. Revisit Frequency">
+    <ChartCard>
       <Bar data={chartData} options={options} />
     </ChartCard>
   );
