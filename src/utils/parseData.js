@@ -96,8 +96,12 @@ const processData = (data) => {
     const q2 = splitMulti(row[Q2]);
     q2.forEach(p => q2Platforms[p] = (q2Platforms[p] || 0) + 1);
 
-    // Q3: First action
-    const q3 = row[Q3];
+    // Q3: First action (with label normalization)
+    let q3 = row[Q3];
+    // Normalize the label
+    if (q3 && q3.toLowerCase().includes('optionwatch')) {
+      q3 = 'Read it right away';
+    }
     if (q3) q3Actions[q3] = (q3Actions[q3] || 0) + 1;
 
     // Q4: Saving methods (multi-select)
