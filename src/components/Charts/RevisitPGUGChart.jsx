@@ -3,12 +3,16 @@ import { Bar } from 'react-chartjs-2';
 import ChartCard from '../ChartCard';
 
 const RevisitPGUGChart = ({ data }) => {
+  // Convert scores to percentages (out of 5.0 max)
+  const pgPercentage = (data.PG / 5.0) * 100;
+  const ugPercentage = (data.UG / 5.0) * 100;
+
   const chartData = {
     labels: ['PG', 'UG'],
     datasets: [
       {
-        label: 'Mean Revisit Score',
-        data: [data.PG, data.UG],
+        label: 'Revisit Score (%)',
+        data: [pgPercentage, ugPercentage],
         backgroundColor: ['#8b5cf6', '#3b82f6'],
         borderRadius: 6,
       },
@@ -24,16 +28,21 @@ const RevisitPGUGChart = ({ data }) => {
         color: '#fff',
         anchor: 'end',
         align: 'top',
-        formatter: (value) => value.toFixed(2),
+        formatter: (value) => value.toFixed(1) + '%',
         font: { weight: 'bold' }
       }
     },
     scales: {
       y: {
         beginAtZero: true,
-        max: 5, // Score is 1-5
+        max: 100, // Percentage scale
         grid: { color: '#334155' },
-        ticks: { color: '#94a3b8' }
+        ticks: { 
+          color: '#94a3b8',
+          callback: function(value) {
+            return value + '%';
+          }
+        }
       },
       x: {
         grid: { display: false },

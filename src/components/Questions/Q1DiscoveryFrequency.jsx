@@ -27,6 +27,11 @@ const Q1DiscoveryFrequency = ({ data }) => {
         color: '#fff',
         anchor: 'end',
         align: 'top',
+        formatter: (value, ctx) => {
+          const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+          const percentage = ((value / total) * 100).toFixed(1) + '%';
+          return `${value} (${percentage})`;
+        },
         font: { weight: 'bold' }
       }
     },

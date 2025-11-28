@@ -52,7 +52,11 @@ const Q5WeeklySaved = ({ data }) => {
           weight: 'bold',
           size: 13
         },
-        formatter: (value) => value
+        formatter: (value, ctx) => {
+          const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+          const percentage = ((value / total) * 100).toFixed(1) + '%';
+          return `${value} (${percentage})`;
+        }
       },
       tooltip: {
         backgroundColor: 'rgba(15, 23, 42, 0.95)',
